@@ -9,6 +9,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 import json
+import webbrowser
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -50,6 +51,7 @@ loop = asyncio.get_event_loop()
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
+webbrowser.open_new_tab('http://localhost:5000/')
 print("You can access the classifier app at http://localhost:5000/")
 
 @app.route('/')
