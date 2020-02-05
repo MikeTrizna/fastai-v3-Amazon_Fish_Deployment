@@ -8,6 +8,7 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+import json
 
 export_file_url = 'https://www.dropbox.com/s/hs6ehrz6mxhpa6u/Peru_Fish.pkl?raw=1'
 export_file_name = 'Peru_Fish.pkl'
@@ -57,11 +58,14 @@ async def homepage(request):
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
+    k = 5
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img)[0]
-    return JSONResponse({'result': str(prediction)})
+    prediction = learn.predict(img)
+    prediction_tuples = [(classes[i], round(float(conf) * 100,2)) for i, conf in enumerate(list(prediction[2]))]
+    top_k = sorted(prediction_tuples, key = lambda x: x[1], reverse=True)[:k]
+    return JSONResponse({'result': json.dumps(top_k)})
 
 
 if __name__ == '__main__':

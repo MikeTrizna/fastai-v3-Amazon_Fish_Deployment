@@ -7,6 +7,9 @@ dependencies:
   - aiofiles
   - aiohttp
   - pillow
+  - pytorch
+  - torchvision
+  - cpuonly
   - fastai
   - numpy
   - starlette
