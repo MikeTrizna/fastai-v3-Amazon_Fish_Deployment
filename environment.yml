@@ -1,0 +1,14 @@
+name: fastai_fish
+channels:
+  - conda-forge
+  - pytorch
+  - fastai
+dependencies:
+  - aiofiles
+  - aiohttp
+  - pillow
+  - fastai
+  - numpy
+  - starlette
+  - uvicorn
+  - python-multipart
