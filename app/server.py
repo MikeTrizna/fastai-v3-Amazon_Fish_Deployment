@@ -10,6 +10,9 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 import json
 
+import warnings
+warnings.filterwarnings("ignore")
+
 export_file_url = 'https://www.dropbox.com/s/hs6ehrz6mxhpa6u/Peru_Fish.pkl?raw=1'
 export_file_name = 'Peru_Fish.pkl'
 
@@ -43,12 +46,11 @@ async def setup_learner():
         else:
             raise
 
-
 loop = asyncio.get_event_loop()
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
-
+print("You can access the classifier app at http://localhost:5000/")
 
 @app.route('/')
 async def homepage(request):
