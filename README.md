@@ -22,4 +22,4 @@ In this directory, run the following command to launch the app:
 
 If it worked correctly, the program will automatically open a browser window at the address "http://localhost:5000/".
 
-![Fish Classifier screenshot]('docs/fastai_fish_screenshot.png')
+![Fish Classifier screenshot](docs/fastai_fish_screenshot.png)
