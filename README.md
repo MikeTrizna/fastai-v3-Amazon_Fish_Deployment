@@ -1,15 +1,25 @@
-# Starter for deploying [fast.ai](https://www.fast.ai) models on [Render](https://render.com)
+# Local fish identifier
 
-This repo can be used as a starting point to deploy [fast.ai](https://github.com/fastai/fastai) models on Render.
+## Install instructions
 
-The sample app described here is up at https://fastai-v3.onrender.com. Test it out with bear images!
+First, ensure that you have miniconda installed. Miniconda instructions are here: https://docs.conda.io/en/latest/miniconda.html#miniconda.
 
-You can test your changes locally by installing Docker and using the following command:
+Run the following command to create a custom conda environment for this app:
 
-```
-docker build -t fastai-v3 . && docker run --rm -it -p 5000:5000 fastai-v3
-```
+`conda env create -f environment.yml`
 
-The guide for production deployment to Render is at https://course.fast.ai/deployment_render.html.
+You will then need to activate the new environment:
 
-Please use [Render's fast.ai forum thread](https://forums.fast.ai/t/deployment-platform-render/33953) for questions and support.
+`conda activate fastai_fish`
+
+## Launching the app
+
+Ensure that your conda environment is activated. Your command prompt should start with (fastai_fish).
+
+In this directory, run the following command to launch the app:
+
+`python app/server.py serve`
+
+If it worked correctly, the program will automatically open a browser window at the address "http://localhost:5000/".
+
+![Fish Classifier screenshot]('docs/fastai_fish_screenshot.png')
